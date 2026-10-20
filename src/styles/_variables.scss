@@ -1,0 +1,89 @@
+// src/styles/_variables.scss
+
+// Core Palette (strictly adhering to user specifications)
+$color-primary: #176B55;           // Deep spruce green
+$color-primary-dark: #0D3E31;      // Deep ink spruce for headings
+$color-primary-light: #21836A;     // Interactive hover
+$color-primary-muted: rgba(23, 107, 85, 0.08);
+
+$color-block-bg: #D9F0E4;          // Pale sage/mint block background
+$color-block-bg-subtle: #EEF7F2;   // Very pale sage wash
+$color-block-border: #BCD8CB;      // Crisp structural border
+
+$color-site-bg: #F7F8F4;           // Warm paper / alabaster
+$color-surface: #FFFFFF;           // Clean card / paper surface
+
+$color-accent: #F0B86E;            // Warm ochre / amber
+$color-accent-hover: #DF9F4D;
+$color-accent-subtle: #FAF2E6;     // Tinted background
+$color-accent-text: #613C08;       // High-contrast text on accent
+
+// Semantic states (accessible, dignified, non-clashing)
+$color-danger: #C0392B;
+$color-danger-bg: #FDF2F1;
+$color-danger-border: #F1B5AF;
+
+$color-success: #1E7E52;
+$color-success-bg: #EAF7F0;
+$color-success-border: #A3DEC0;
+
+$color-warning: #D97706;
+$color-warning-bg: #FEF3C7;
+$color-warning-border: #FCD34D;
+
+$color-info: #176B55;
+$color-info-bg: #D9F0E4;
+$color-info-border: #BCD8CB;
+
+// Editorial Neutral Scale
+$color-text-primary: #17241F;      // Deep charcoal with spruce undertone (AAA contrast)
+$color-text-secondary: #4A5B53;    // Muted readable text
+$color-text-tertiary: #788A82;     // Quiet captions & metadata
+$color-border-hairline: #E1E8E4;   // 1px structural dividing lines
+$color-border-strong: #AEC2B7;     // Input & focus borders
+
+// Compatibility Aliases
+$color-text-main: $color-text-primary;
+$color-text-muted: $color-text-secondary;
+$color-text-subtle: $color-text-tertiary;
+$color-border: $color-border-hairline;
+$color-border-hover: $color-border-strong;
+
+// Typography: System fonts tuned for editorial clarity
+$font-family-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
+$font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+$font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+// Geometry: Modern startup rounded geometry (20–28px cards, pill badges)
+$radius-none: 0px;
+$radius-xs: 4px;
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-card-sm: 14px;
+$radius-card: 20px;
+$radius-card-lg: 28px;
+$radius-pill: 9999px;
+$radius-full: 9999px;
+
+// Shadows: Layered, ambient, modern social-tech shadows
+$shadow-hairline: 0 1px 2px rgba(17, 36, 31, 0.04);
+$shadow-flat: 0 2px 8px rgba(17, 36, 31, 0.04);
+$shadow-card: 0 6px 20px -4px rgba(23, 107, 85, 0.06), 0 2px 6px rgba(17, 36, 31, 0.03);
+$shadow-hover: 0 16px 36px -8px rgba(23, 107, 85, 0.12), 0 4px 12px rgba(17, 36, 31, 0.04);
+$shadow-float: 0 20px 48px -10px rgba(17, 36, 31, 0.14);
+$shadow-raised: 0 8px 28px rgba(17, 36, 31, 0.08);
+$shadow-lg: 0 12px 36px rgba(17, 36, 31, 0.10);
+$shadow-focus: 0 0 0 3px rgba(23, 107, 85, 0.25);
+$shadow-focus-danger: 0 0 0 3px rgba(192, 57, 43, 0.25);
+
+// Transitions: silky, responsive
+$transition-instant: 120ms ease;
+$transition-fast: 180ms cubic-bezier(0.2, 0, 0, 1);
+$transition-smooth: 260ms cubic-bezier(0.16, 1, 0.3, 1);
+
+// Breakpoints
+$bp-mobile: 480px;
+$bp-tablet: 768px;
+$bp-desktop: 1024px;
+$bp-wide: 1240px;
+

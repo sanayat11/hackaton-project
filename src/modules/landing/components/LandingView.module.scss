@@ -1,0 +1,1038 @@
+// src/modules/landing/components/LandingView.module.scss
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.landingWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow-x: hidden;
+}
+
+// ----------------------------------------------------
+// 1. HERO SECTION
+// ----------------------------------------------------
+.heroSection {
+  padding: 5rem 0 4.5rem;
+  background-color: $color-site-bg;
+  position: relative;
+  border-bottom: 1px solid rgba(188, 216, 203, 0.4);
+
+  @include tablet {
+    padding: 3.5rem 0 3rem;
+  }
+
+  @include mobile {
+    padding: 2.25rem 0 2rem;
+  }
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+
+  @include desktop {
+    gap: 2.5rem;
+  }
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.serviceBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0.85rem;
+  background-color: $color-block-bg;
+  border: 1px solid $color-block-border;
+  border-radius: $radius-pill;
+  font-family: $font-family-mono;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: $color-primary;
+  margin-bottom: 1.5rem;
+  width: fit-content;
+}
+
+.livePulseDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: $color-primary;
+  box-shadow: 0 0 0 3px rgba(23, 107, 85, 0.2);
+  animation: pulseDot 2s infinite;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: $color-primary-dark;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+
+  @include desktop {
+    font-size: 3rem;
+  }
+
+  @include mobile {
+    font-size: 2.25rem;
+    letter-spacing: -0.02em;
+  }
+}
+
+.heroLead {
+  font-size: 1.15rem;
+  color: $color-text-secondary;
+  line-height: 1.65;
+  margin-bottom: 2.25rem;
+  max-width: 560px;
+
+  @include mobile {
+    font-size: 1rem;
+    margin-bottom: 1.75rem;
+  }
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: stretch;
+
+    & > * {
+      width: 100%;
+    }
+  }
+}
+
+.trustBar {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(188, 216, 203, 0.6);
+
+  @include mobile {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+}
+
+.trustItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+
+  strong {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: $color-primary-dark;
+    font-family: $font-family-mono;
+  }
+
+  span {
+    font-size: 0.775rem;
+    color: $color-text-tertiary;
+    font-weight: 500;
+  }
+}
+
+.trustDivider {
+  width: 1px;
+  height: 28px;
+  background-color: $color-block-border;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.trustRating {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.starIcon {
+  color: $color-accent;
+  fill: $color-accent;
+}
+
+// ----------------------------------------------------
+// HERO RIGHT: INTERACTIVE TRANSIT MAP & RADAR
+// ----------------------------------------------------
+.heroVisual {
+  position: relative;
+  width: 100%;
+}
+
+.mapCanvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 540 / 420;
+  background-color: #ffffff;
+  border: 1px solid $color-block-border;
+  border-radius: $radius-card-lg;
+  box-shadow: $shadow-card;
+  overflow: hidden;
+
+  @include mobile {
+    aspect-ratio: 1 / 1.1;
+  }
+}
+
+.mapSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.animatedRouteLine {
+  stroke-dasharray: 8 4;
+  animation: dashAnimation 30s linear infinite;
+}
+
+@keyframes dashAnimation {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+.pulseRing {
+  animation: pulseRingAnim 2.5s infinite ease-out;
+  transform-origin: 110px 280px;
+}
+
+.pulseRingFast {
+  animation: pulseRingAnim 2s infinite ease-out;
+  transform-origin: 420px 120px;
+}
+
+@keyframes pulseRingAnim {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+// Floating Card 1 (Top Left)
+.floatingCardTop {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  width: 250px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(188, 216, 203, 0.7);
+  border-radius: $radius-card-sm;
+  padding: 0.85rem 1rem;
+  box-shadow: $shadow-card;
+  animation: floatSlow 6s ease-in-out infinite;
+
+  @include mobile {
+    top: 0.75rem;
+    left: 0.75rem;
+    width: calc(100% - 1.5rem);
+  }
+}
+
+.floatingCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.floatingBadgeUrgent {
+  font-family: $font-family-mono;
+  font-size: 0.675rem;
+  font-weight: 700;
+  color: #4A2800;
+  background-color: $color-accent;
+  padding: 0.15rem 0.45rem;
+  border-radius: $radius-xs;
+}
+
+.floatingDistance {
+  font-family: $font-family-mono;
+  font-size: 0.725rem;
+  font-weight: 700;
+  color: $color-primary;
+}
+
+.floatingRoute {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  strong {
+    display: block;
+    font-size: 0.85rem;
+    color: $color-text-primary;
+    line-height: 1.2;
+  }
+
+  span {
+    display: block;
+    font-size: 0.75rem;
+    color: $color-text-secondary;
+  }
+}
+
+.routePinIcon {
+  color: $color-primary;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.floatingApplicant {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid rgba(188, 216, 203, 0.5);
+  font-size: 0.75rem;
+  color: $color-text-secondary;
+}
+
+.applicantAvatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: $color-block-bg;
+  color: $color-primary-dark;
+  font-weight: 700;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Floating Card 2 (Bottom Right)
+.floatingCardBottom {
+  position: absolute;
+  bottom: 3.5rem;
+  right: 1.25rem;
+  width: 260px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(188, 216, 203, 0.7);
+  border-radius: $radius-card-sm;
+  padding: 0.85rem 1rem;
+  box-shadow: $shadow-card;
+  animation: floatReverse 7s ease-in-out infinite;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.volunteerBanner {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.5rem;
+}
+
+.volunteerAvatarWrap {
+  position: relative;
+}
+
+.volunteerAvatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: $color-primary;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.onlineStatusDot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #2ECC71;
+  border: 1.5px solid #ffffff;
+}
+
+.volunteerNameRow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  strong {
+    font-size: 0.85rem;
+    color: $color-text-primary;
+  }
+}
+
+.ratingPill {
+  font-family: $font-family-mono;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #4A2800;
+  background-color: $color-accent;
+  padding: 0.1rem 0.35rem;
+  border-radius: $radius-xs;
+}
+
+.volunteerStatusText {
+  display: block;
+  font-size: 0.75rem;
+  color: $color-primary;
+  font-weight: 600;
+}
+
+.verifiedStrip {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid rgba(188, 216, 203, 0.5);
+  font-size: 0.725rem;
+  color: $color-text-secondary;
+}
+
+.shieldIcon {
+  color: $color-primary;
+  flex-shrink: 0;
+}
+
+.radarStatusPill {
+  position: absolute;
+  bottom: 0.85rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(23, 107, 85, 0.95);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  padding: 0.45rem 1rem;
+  border-radius: $radius-pill;
+  font-size: 0.775rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(17, 36, 31, 0.15);
+
+  strong {
+    color: $color-accent;
+  }
+
+  @include mobile {
+    width: calc(100% - 1.5rem);
+    justify-content: center;
+    font-size: 0.725rem;
+  }
+}
+
+.radarLiveLight {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: $color-accent;
+  animation: pulseDot 1.5s infinite;
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes floatReverse {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+// ----------------------------------------------------
+// 2. THE HUMAN TRANSIT JOURNEY
+// ----------------------------------------------------
+.journeySection {
+  padding: 5.5rem 0;
+  background-color: $color-site-bg;
+
+  @include mobile {
+    padding: 3rem 0;
+  }
+}
+
+.sectionHeaderCentered {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3.5rem;
+}
+
+.sectionTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: $font-family-mono;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $color-primary;
+  margin-bottom: 0.75rem;
+}
+
+.motifInline {
+  color: $color-primary;
+}
+
+.sectionHeadingLarge {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: $color-primary-dark;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.85rem;
+
+  @include mobile {
+    font-size: 1.85rem;
+  }
+}
+
+.sectionSubtext {
+  font-size: 1.05rem;
+  color: $color-text-secondary;
+  line-height: 1.6;
+}
+
+.journeyGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  position: relative;
+
+  @include desktop {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.journeyCard {
+  @include card-primary;
+  padding: 2.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.journeyStepNumber {
+  font-family: $font-family-mono;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: $color-primary;
+  margin-bottom: 1.25rem;
+}
+
+.journeyIconBox {
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-sm;
+  background-color: $color-block-bg;
+  color: $color-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.journeyCardTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: $color-primary-dark;
+  line-height: 1.3;
+  margin-bottom: 0.65rem;
+}
+
+.journeyCardText {
+  font-size: 0.925rem;
+  color: $color-text-secondary;
+  line-height: 1.6;
+}
+
+// ----------------------------------------------------
+// 3. DARK GREEN IMPACT & SOCIAL HOURS SECTION (#176B55)
+// ----------------------------------------------------
+.impactSection {
+  background-color: $color-primary;
+  color: #ffffff;
+  padding: 5.5rem 0;
+  position: relative;
+  overflow: hidden;
+
+  // Delicate Kyrgyz geometric pattern watermark
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image: radial-gradient(#ffffff 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+  }
+
+  @include mobile {
+    padding: 3.5rem 0;
+  }
+}
+
+.impactContainer {
+  position: relative;
+  z-index: 2;
+}
+
+.impactHeader {
+  max-width: 680px;
+  margin-bottom: 3.5rem;
+}
+
+.impactBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: $radius-pill;
+  font-family: $font-family-mono;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: $color-accent;
+  margin-bottom: 1.25rem;
+}
+
+.impactTitle {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+
+  @include mobile {
+    font-size: 1.95rem;
+  }
+}
+
+.impactLead {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.65;
+}
+
+.impactContentGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+// 4 Stats in 2x2 grid
+.statsCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.statMetric {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: $radius-card;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: background-color $transition-smooth;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+}
+
+.statNumber {
+  font-family: $font-family-mono;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: $color-accent;
+  line-height: 1.1;
+}
+
+.statLabel {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
+
+// Achievements Preview Card
+.achievementsPreviewCard {
+  background: #ffffff;
+  color: $color-text-primary;
+  border-radius: $radius-card;
+  padding: 2.25rem;
+  box-shadow: $shadow-raised;
+  display: flex;
+  flex-direction: column;
+}
+
+.achievementsCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid $color-block-border;
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: $color-primary-dark;
+  }
+
+  span {
+    font-size: 0.8rem;
+    color: $color-text-secondary;
+  }
+}
+
+.awardIcon {
+  color: $color-accent;
+  flex-shrink: 0;
+}
+
+.badgesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.75rem;
+}
+
+.badgeItemUnlocked {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem 1rem;
+  background-color: $color-block-bg;
+  border: 1px solid $color-block-border;
+  border-radius: $radius-card-sm;
+
+  strong {
+    display: block;
+    font-size: 0.875rem;
+    color: $color-primary-dark;
+  }
+
+  span {
+    display: block;
+    font-size: 0.775rem;
+    color: $color-text-secondary;
+  }
+}
+
+.badgeItemLocked {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem 1rem;
+  background-color: $color-site-bg;
+  border: 1px solid rgba(188, 216, 203, 0.5);
+  border-radius: $radius-card-sm;
+
+  strong {
+    display: block;
+    font-size: 0.875rem;
+    color: $color-text-primary;
+    margin-bottom: 0.35rem;
+  }
+}
+
+.badgeIcon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.progressBar {
+  width: 140px;
+  height: 6px;
+  background-color: $color-block-border;
+  border-radius: $radius-pill;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: $color-primary;
+  border-radius: $radius-pill;
+}
+
+.viewCabinetLink {
+  margin-top: auto;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: $color-primary;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  &:hover {
+    color: $color-primary-dark;
+    text-decoration: underline;
+  }
+}
+
+// ----------------------------------------------------
+// 4. SPHERES OF SUPPORT (Направления)
+// ----------------------------------------------------
+.spheresSection {
+  padding: 5.5rem 0;
+  background-color: $color-site-bg;
+  border-bottom: 1px solid rgba(188, 216, 203, 0.4);
+
+  @include mobile {
+    padding: 3rem 0;
+  }
+}
+
+.sectionHeaderRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.spheresGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+
+  @include desktop {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sphereCard {
+  @include card-soft;
+  padding: 2.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.sphereIconWrap {
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-sm;
+  background-color: #ffffff;
+  color: $color-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  box-shadow: $shadow-hairline;
+}
+
+.sphereIndex {
+  font-family: $font-family-mono;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: $color-primary;
+  margin-bottom: 0.75rem;
+}
+
+.sphereTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: $color-primary-dark;
+  line-height: 1.3;
+  margin-bottom: 0.65rem;
+}
+
+.sphereText {
+  font-size: 0.925rem;
+  color: $color-text-secondary;
+  line-height: 1.6;
+}
+
+// ----------------------------------------------------
+// 5. REAL OPEN REQUESTS DIRECTORY
+// ----------------------------------------------------
+.directorySection {
+  padding: 5.5rem 0;
+  background-color: $color-site-bg;
+
+  @include mobile {
+    padding: 3rem 0;
+  }
+}
+
+.feedHeaderRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.requestsDirectoryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+
+  @include desktop {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ----------------------------------------------------
+// 6. TRUST & SAFETY STRIP
+// ----------------------------------------------------
+.trustSection {
+  padding: 0 0 5rem;
+  background-color: $color-site-bg;
+
+  @include mobile {
+    padding: 0 0 3rem;
+  }
+}
+
+.civicNotice {
+  background-color: $color-block-bg;
+  border: 1px solid $color-block-border;
+  border-radius: $radius-card-lg;
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1.6fr 1.1fr;
+  gap: 3rem;
+  align-items: center;
+  box-shadow: $shadow-card;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+    gap: 1.75rem;
+  }
+}
+
+.noticeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: $font-family-mono;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: $color-primary;
+  margin-bottom: 0.75rem;
+}
+
+.noticeContent {
+  h3 {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: $color-primary-dark;
+    line-height: 1.25;
+    margin-bottom: 0.65rem;
+
+    @include mobile {
+      font-size: 1.35rem;
+    }
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: $color-text-primary;
+    line-height: 1.65;
+  }
+}
+
+.noticeContact {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background-color: #ffffff;
+  border: 1px solid $color-block-border;
+  border-radius: $radius-card;
+  padding: 1.5rem 1.75rem;
+
+  span {
+    display: block;
+    font-size: 0.8rem;
+    color: $color-text-secondary;
+  }
+
+  strong {
+    display: block;
+    font-family: $font-family-mono;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: $color-primary;
+    margin: 0.2rem 0;
+  }
+}
+
+.phoneIcon {
+  color: $color-primary;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}

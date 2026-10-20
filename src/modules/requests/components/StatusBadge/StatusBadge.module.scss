@@ -1,0 +1,53 @@
+// src/modules/requests/components/StatusBadge/StatusBadge.module.scss
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: $radius-xs;
+  font-family: $font-family-mono;
+  font-size: 0.725rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid transparent;
+
+  &.pending {
+    background-color: $color-accent;
+    color: #4A2800;
+    border-color: #DF9F4D;
+  }
+
+  &.assigned {
+    background-color: $color-block-bg-subtle;
+    color: $color-primary;
+    border-color: $color-block-border;
+  }
+
+  &.in_progress {
+    background-color: $color-block-bg;
+    color: $color-primary-dark;
+    border-color: $color-primary;
+  }
+
+  &.completed {
+    background-color: $color-success-bg;
+    color: $color-success;
+    border-color: $color-success-border;
+  }
+
+  &.cancelled {
+    background-color: $color-danger-bg;
+    color: $color-danger;
+    border-color: $color-danger-border;
+  }
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+}

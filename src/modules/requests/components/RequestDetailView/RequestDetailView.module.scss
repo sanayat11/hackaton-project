@@ -1,0 +1,248 @@
+// src/modules/requests/components/RequestDetailView/RequestDetailView.module.scss
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: $font-family-mono;
+  font-size: 0.8125rem;
+  color: $color-primary;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+
+  &:hover {
+    color: $color-primary-dark;
+  }
+
+  @include focus-ring($color-primary);
+}
+
+.sheet {
+  background-color: $color-block-bg;
+  border: 1px solid $color-block-border;
+  border-radius: $radius-xs;
+  overflow: hidden;
+}
+
+.sheetHeader {
+  padding: 2.25rem 2.5rem 1.75rem;
+  border-bottom: 1px solid $color-block-border;
+  background-color: $color-block-bg;
+
+  @include mobile {
+    padding: 1.5rem 1.25rem 1.25rem;
+  }
+}
+
+.routeMetaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.serviceRef {
+  font-family: $font-family-mono;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $color-primary;
+}
+
+.title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: $color-primary-dark;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+
+  @include mobile {
+    font-size: 1.6rem;
+  }
+}
+
+// Transit Route Progress Line
+.routeVisualTrack {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background-color: #ffffff;
+  border: 1px solid $color-block-border;
+  border-radius: $radius-xs;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.trackPoint {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  color: $color-text-primary;
+}
+
+.trackDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: $color-primary;
+
+  &.hollow {
+    background-color: transparent;
+    border: 2px solid $color-primary;
+  }
+}
+
+.trackLine {
+  flex: 1;
+  min-width: 40px;
+  height: 2px;
+  background-color: $color-border-strong;
+
+  &.active {
+    background-color: $color-primary;
+  }
+}
+
+.sheetBody {
+  padding: 2.5rem;
+
+  @include mobile {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1.75fr 1fr;
+  gap: 2.5rem;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}
+
+.sectionHeading {
+  font-family: $font-family-mono;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $color-primary;
+  margin-bottom: 0.875rem;
+}
+
+.description {
+  font-size: 1.05rem;
+  color: $color-text-primary;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  margin-bottom: 2rem;
+}
+
+.sidebarBox {
+  background-color: #ffffff;
+  border: 1px solid $color-block-border;
+  border-radius: $radius-xs;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.detailRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.detailLabel {
+  font-family: $font-family-mono;
+  font-size: 0.725rem;
+  color: $color-text-tertiary;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.detailValue {
+  font-size: 0.95rem;
+  color: $color-text-primary;
+  font-weight: 600;
+}
+
+.statusNotice {
+  padding: 1rem 1.25rem;
+  border-radius: $radius-xs;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+
+  &.assigned {
+    background-color: $color-block-bg-subtle;
+    border: 1px solid $color-block-border;
+    color: $color-primary-dark;
+  }
+
+  &.completed {
+    background-color: $color-success-bg;
+    border: 1px solid $color-success-border;
+    color: $color-success;
+  }
+
+  &.cancelled {
+    background-color: $color-danger-bg;
+    border: 1px solid $color-danger-border;
+    color: $color-danger;
+  }
+}
+
+.toolbar {
+  padding: 1.5rem 2.5rem;
+  background-color: $color-site-bg;
+  border-top: 1px solid $color-border-hairline;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  @include mobile {
+    padding: 1.25rem;
+    flex-direction: column;
+    align-items: stretch;
+
+    & > * {
+      width: 100%;
+    }
+  }
+}
+
+.actionGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+
+  @include mobile {
+    width: 100%;
+    flex-direction: column;
+
+    & > * {
+      width: 100%;
+    }
+  }
+}

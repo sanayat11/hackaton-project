@@ -1,0 +1,245 @@
+// src/modules/requests/components/RequestCard/RequestCard.module.scss
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.card {
+  @include card-primary;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 320px;
+  position: relative;
+  overflow: hidden;
+
+  &.highUrgency {
+    border-left: 4px solid $color-danger;
+  }
+
+  &.mediumUrgency {
+    border-left: 4px solid $color-accent;
+  }
+}
+
+.cardTop {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.categoryPill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  background-color: $color-block-bg;
+  border: 1px solid $color-block-border;
+  border-radius: $radius-pill;
+  font-family: $font-family-mono;
+  font-size: 0.725rem;
+  font-weight: 700;
+  color: $color-primary-dark;
+  letter-spacing: 0.02em;
+}
+
+.statusBadgesGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.urgencyBadge {
+  font-family: $font-family-mono;
+  font-size: 0.675rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.45rem;
+  border-radius: $radius-xs;
+
+  &.high {
+    color: $color-danger;
+    background-color: $color-danger-bg;
+    border: 1px solid $color-danger-border;
+  }
+
+  &.medium {
+    color: #4A2800;
+    background-color: $color-accent;
+    border: 1px solid #DF9F4D;
+    font-weight: 700;
+  }
+
+  &.low {
+    color: $color-text-tertiary;
+    background-color: $color-site-bg;
+    border: 1px solid $color-block-border;
+  }
+}
+
+.applicantRow {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+  color: $color-text-secondary;
+}
+
+.applicantAvatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: $color-block-bg;
+  color: $color-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.applicantName {
+  font-weight: 600;
+  color: $color-text-primary;
+}
+
+.dotSeparator {
+  color: $color-border-strong;
+}
+
+.districtText {
+  color: $color-text-secondary;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: $color-primary-dark;
+  line-height: 1.3;
+  margin-bottom: 0.65rem;
+
+  a {
+    transition: color $transition-fast;
+    &:hover {
+      color: $color-primary;
+    }
+    @include focus-ring($color-primary);
+  }
+}
+
+.description {
+  font-size: 0.9rem;
+  color: $color-text-secondary;
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+  @include line-clamp(2);
+}
+
+.waypointBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1rem;
+  background-color: $color-site-bg;
+  border: 1px solid rgba(188, 216, 203, 0.6);
+  border-radius: $radius-card-sm;
+  margin-bottom: 1.25rem;
+}
+
+.waypointRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.pinIcon {
+  color: $color-primary;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.clockIcon {
+  color: $color-accent-text;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.waypointText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.waypointLabel {
+  font-family: $font-family-mono;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: $color-text-tertiary;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.waypointValue {
+  font-size: 0.85rem;
+  color: $color-text-primary;
+  line-height: 1.35;
+}
+
+.assignedBanner {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 0.85rem;
+  background-color: $color-block-bg;
+  border: 1px solid $color-block-border;
+  border-radius: $radius-xs;
+  font-size: 0.775rem;
+  margin-bottom: 1.25rem;
+
+  span {
+    color: $color-text-secondary;
+  }
+
+  strong {
+    color: $color-primary-dark;
+    margin-left: 0.25rem;
+  }
+}
+
+.shieldIcon {
+  color: $color-primary;
+  flex-shrink: 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(188, 216, 203, 0.5);
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.detailsLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $color-text-secondary;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  @include focus-ring($color-primary);
+}

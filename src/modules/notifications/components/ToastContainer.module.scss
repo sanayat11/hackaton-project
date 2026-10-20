@@ -1,0 +1,129 @@
+// src/modules/notifications/components/ToastContainer.module.scss
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.toastContainer {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 420px;
+  width: calc(100% - 2rem);
+  pointer-events: none;
+
+  @include mobile {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    width: auto;
+  }
+}
+
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 1rem 1.125rem;
+  border-radius: $radius-md;
+  box-shadow: $shadow-lg;
+  background: #ffffff;
+  border: 1px solid $color-border;
+  animation: slideIn 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform $transition-fast, opacity $transition-fast;
+
+  &.success {
+    border-left: 4px solid $color-success;
+    .iconWrapper {
+      color: $color-success;
+      background: $color-success-bg;
+    }
+  }
+
+  &.error {
+    border-left: 4px solid $color-danger;
+    .iconWrapper {
+      color: $color-danger;
+      background: $color-danger-bg;
+    }
+  }
+
+  &.warning {
+    border-left: 4px solid $color-warning;
+    .iconWrapper {
+      color: $color-warning;
+      background: $color-warning-bg;
+    }
+  }
+
+  &.info {
+    border-left: 4px solid $color-info;
+    .iconWrapper {
+      color: $color-info;
+      background: $color-info-bg;
+    }
+  }
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: $radius-full;
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: $color-text-main;
+  margin-bottom: 0.2rem;
+}
+
+.message {
+  font-size: 0.85rem;
+  color: $color-text-muted;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  color: $color-text-subtle;
+  padding: 0.25rem;
+  cursor: pointer;
+  border-radius: $radius-xs;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color $transition-fast, background-color $transition-fast;
+
+  &:hover {
+    color: $color-text-main;
+    background-color: $color-site-bg;
+  }
+
+  @include focus-ring($color-primary);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px) scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}

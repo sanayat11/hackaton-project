@@ -1,0 +1,181 @@
+// src/modules/coordinator/components/CoordinatorDashboard/CoordinatorDashboard.module.scss
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid $color-border-hairline;
+}
+
+.serviceRef {
+  font-family: $font-family-mono;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-primary;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: $color-primary-dark;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+
+  @include mobile {
+    font-size: 1.75rem;
+  }
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: $color-text-secondary;
+}
+
+.metricsRow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.metricCard {
+  background-color: $color-block-bg;
+  border: 1px solid $color-block-border;
+  border-radius: $radius-xs;
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  &.urgentCard {
+    border-left: 4px solid $color-danger;
+    .metricNum {
+      color: $color-danger;
+    }
+  }
+
+  &.pendingCard {
+    border-left: 4px solid $color-accent;
+    .metricNum {
+      color: #613C08;
+    }
+  }
+}
+
+.metricNum {
+  font-family: $font-family-mono;
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: $color-primary-dark;
+  line-height: 1;
+}
+
+.metricLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: $color-text-secondary;
+}
+
+.tableCard {
+  background-color: $color-block-bg;
+  border-radius: $radius-xs;
+  border: 1px solid $color-block-border;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+.tableToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid $color-border-hairline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.tableTitle {
+  font-family: $font-family-mono;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-primary-dark;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+
+  th {
+    background-color: $color-site-bg;
+    color: $color-text-tertiary;
+    font-family: $font-family-mono;
+    font-size: 0.725rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid $color-border-hairline;
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 1rem;
+    border-bottom: 1px solid $color-border-hairline;
+    color: $color-text-primary;
+    vertical-align: middle;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tr:hover td {
+    background-color: rgba(23, 107, 85, 0.02);
+  }
+}
+
+.rowTitle {
+  font-weight: 600;
+  color: $color-primary-dark;
+  display: block;
+  margin-bottom: 0.2rem;
+  line-height: 1.3;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.rowAddress {
+  font-size: 0.775rem;
+  color: $color-text-secondary;
+}
+
+.actionCell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}

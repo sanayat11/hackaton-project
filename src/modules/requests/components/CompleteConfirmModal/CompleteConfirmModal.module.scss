@@ -1,0 +1,28 @@
+// src/modules/requests/components/CompleteConfirmModal/CompleteConfirmModal.module.scss
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.successIntro {
+  background-color: $color-success-bg;
+  border: 1px solid $color-success-border;
+  border-radius: $radius-xs;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  color: $color-success;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+
+  svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+}
+
+.requestTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: $color-primary-dark;
+  margin-bottom: 1rem;
+}

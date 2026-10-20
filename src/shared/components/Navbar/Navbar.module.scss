@@ -1,0 +1,278 @@
+// src/shared/components/Navbar/Navbar.module.scss
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(247, 248, 244, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(188, 216, 203, 0.5);
+  transition: background-color $transition-smooth, box-shadow $transition-smooth, height $transition-smooth;
+
+  &.scrolled {
+    background-color: rgba(247, 248, 244, 0.98);
+    box-shadow: 0 4px 20px -2px rgba(17, 36, 31, 0.06);
+    border-bottom: 1px solid $color-block-border;
+  }
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  gap: 1.5rem;
+  transition: height $transition-smooth;
+
+  .scrolled & {
+    height: 64px;
+  }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+  flex-shrink: 0;
+
+  @include focus-ring($color-primary);
+}
+
+.brandMarkWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.motifBadge {
+  width: 38px;
+  height: 38px;
+  border-radius: $radius-sm;
+  background-color: $color-primary;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(23, 107, 85, 0.25);
+  transition: transform $transition-smooth;
+
+  .brand:hover & {
+    transform: rotate(45deg);
+  }
+}
+
+.transitDots {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.dotPulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: $color-accent;
+  box-shadow: 0 0 0 3px rgba(240, 184, 110, 0.35);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+    box-shadow: 0 0 0 6px rgba(240, 184, 110, 0.15);
+  }
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: $color-primary-dark;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.brandSubtitle {
+  font-size: 0.725rem;
+  color: $color-text-secondary;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.navLink {
+  padding: 0.5rem 0.85rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $color-text-secondary;
+  transition: color $transition-fast;
+  position: relative;
+  border-radius: $radius-xs;
+
+  &:hover {
+    color: $color-primary-dark;
+    background-color: rgba(23, 107, 85, 0.05);
+  }
+
+  &.active {
+    color: $color-primary-dark;
+    font-weight: 700;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -14px;
+      left: 0.85rem;
+      right: 0.85rem;
+      height: 2px;
+      background-color: $color-primary;
+    }
+  }
+
+  @include focus-ring($color-primary);
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  @include mobile {
+    gap: 0.5rem;
+  }
+}
+
+.quickCtaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: $color-primary;
+  color: #ffffff;
+  padding: 0.55rem 1.15rem;
+  border-radius: $radius-pill;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(23, 107, 85, 0.22);
+  transition: all $transition-smooth;
+
+  &:hover {
+    background-color: $color-primary-light;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(23, 107, 85, 0.28);
+  }
+
+  @include button-press;
+  @include focus-ring($color-primary);
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.demoIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: $radius-xs;
+  background-color: $color-block-bg;
+  border: 1px solid $color-block-border;
+  color: $color-primary-dark;
+  font-size: 0.725rem;
+  font-weight: 600;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.menuButton {
+  display: none;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5rem;
+  border-radius: $radius-xs;
+  color: $color-text-primary;
+  align-items: center;
+  justify-content: center;
+
+  @include tablet {
+    display: flex;
+  }
+
+  @include focus-ring($color-primary);
+}
+
+// Mobile drawer
+.mobileDrawer {
+  display: none;
+
+  @include tablet {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.25rem 1.5rem;
+    background-color: $color-site-bg;
+    border-top: 1px solid $color-border-hairline;
+    gap: 0.5rem;
+  }
+}
+
+.mobileLink {
+  padding: 0.75rem 0.5rem;
+  border-radius: $radius-xs;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: $color-text-secondary;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+
+  &.active {
+    color: $color-primary-dark;
+    font-weight: 700;
+    border-left: 3px solid $color-primary;
+    padding-left: 0.75rem;
+    background-color: $color-block-bg-subtle;
+  }
+}
+
+.mobileRoleSection {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid $color-border-hairline;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobileRoleTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-text-tertiary;
+}

@@ -1,0 +1,90 @@
+// src/shared/components/Select/Select.module.scss
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  width: 100%;
+}
+
+.labelWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $color-text-main;
+
+  .required {
+    color: $color-danger;
+    margin-left: 0.25rem;
+  }
+}
+
+.selectWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select {
+  width: 100%;
+  padding: 0.6875rem 2.25rem 0.6875rem 0.875rem;
+  border-radius: $radius-sm;
+  border: 1px solid $color-border;
+  background-color: #ffffff;
+  color: $color-text-main;
+  font-size: 0.9375rem;
+  appearance: none;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover:not(:disabled) {
+    border-color: $color-border-hover;
+  }
+
+  &:focus {
+    border-color: $color-primary;
+    box-shadow: $shadow-focus;
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: $color-site-bg;
+    color: $color-text-subtle;
+    cursor: not-allowed;
+  }
+
+  &.hasError {
+    border-color: $color-danger;
+    background-color: $color-danger-bg;
+
+    &:focus {
+      box-shadow: $shadow-focus-danger;
+      border-color: $color-danger;
+    }
+  }
+}
+
+.chevron {
+  position: absolute;
+  right: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $color-text-muted;
+  pointer-events: none;
+}
+
+.errorMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8125rem;
+  color: $color-danger;
+  font-weight: 500;
+  margin-top: 0.125rem;
+}

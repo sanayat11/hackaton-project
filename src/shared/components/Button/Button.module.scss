@@ -1,0 +1,181 @@
+// src/shared/components/Button/Button.module.scss
+@use 'sass:color';
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: inherit;
+  font-weight: 600;
+  border-radius: $radius-xs;
+  transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  user-select: none;
+  line-height: 1.25;
+  white-space: nowrap;
+
+  // Touch targets minimum 44px on mobile
+  min-height: 44px;
+
+  &:disabled,
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &.fullWidth {
+    width: 100%;
+  }
+
+  // Sizes
+  &.sm {
+    min-height: 38px;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.8125rem;
+  }
+
+  &.md {
+    min-height: 44px;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+
+  &.lg {
+    min-height: 48px;
+    padding: 0.75rem 1.6rem;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  // Primary: solid spruce green, crisp border, zero gradient
+  &.primary {
+    background-color: $color-primary;
+    color: #ffffff;
+    border-color: $color-primary;
+
+    &:hover:not(:disabled) {
+      background-color: $color-primary-light;
+      border-color: $color-primary-light;
+    }
+
+    &:active:not(:disabled) {
+      background-color: $color-primary-dark;
+      border-color: $color-primary-dark;
+    }
+
+    @include focus-ring($color-primary);
+  }
+
+  // Secondary: pale sage surface with crisp block border
+  &.secondary {
+    background-color: $color-block-bg;
+    color: $color-primary-dark;
+    border-color: $color-block-border;
+
+    &:hover:not(:disabled) {
+      background-color: color.adjust($color-block-bg, $lightness: -4%);
+      border-color: color.adjust($color-block-border, $lightness: -6%);
+    }
+
+    &:active:not(:disabled) {
+      background-color: color.adjust($color-block-bg, $lightness: -8%);
+    }
+
+    @include focus-ring($color-primary);
+  }
+
+  // Accent: warm ochre for primary route confirmation
+  &.accent {
+    background-color: $color-accent;
+    color: $color-accent-text;
+    border-color: #DF9F4D;
+
+    &:hover:not(:disabled) {
+      background-color: $color-accent-hover;
+      border-color: $color-accent-hover;
+    }
+
+    &:active:not(:disabled) {
+      background-color: #C68630;
+    }
+
+    @include focus-ring($color-accent);
+  }
+
+  // Outline: refined 1px border
+  &.outline {
+    background-color: transparent;
+    color: $color-primary-dark;
+    border-color: $color-border-strong;
+
+    &:hover:not(:disabled) {
+      background-color: $color-block-bg-subtle;
+      border-color: $color-primary;
+      color: $color-primary;
+    }
+
+    &:active:not(:disabled) {
+      background-color: $color-block-bg;
+    }
+
+    @include focus-ring($color-primary);
+  }
+
+  // Danger: clear, serious red for cancellation
+  &.danger {
+    background-color: $color-danger;
+    color: #ffffff;
+    border-color: $color-danger;
+
+    &:hover:not(:disabled) {
+      background-color: #A93226;
+    }
+
+    &:active:not(:disabled) {
+      background-color: #922B21;
+    }
+
+    @include focus-ring($color-danger);
+  }
+
+  // Ghost: clean text link with hover feedback
+  &.ghost {
+    background-color: transparent;
+    color: $color-text-secondary;
+    border-color: transparent;
+
+    &:hover:not(:disabled) {
+      background-color: rgba(23, 107, 85, 0.06);
+      color: $color-primary-dark;
+    }
+
+    &:active:not(:disabled) {
+      background-color: rgba(23, 107, 85, 0.12);
+    }
+
+    @include focus-ring($color-primary);
+  }
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
