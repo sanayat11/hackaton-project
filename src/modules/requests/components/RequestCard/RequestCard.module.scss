@@ -162,6 +162,11 @@
   color: $color-primary;
   flex-shrink: 0;
   margin-top: 0.15rem;
+  transition: transform $transition-fast;
+
+  .card:hover & {
+    transform: translateY(-2px);
+  }
 }
 
 .clockIcon {
@@ -237,8 +242,16 @@
   text-decoration: none;
   transition: color $transition-fast;
 
+  svg {
+    transition: transform $transition-fast;
+  }
+
   &:hover {
     color: $color-primary;
+
+    svg {
+      transform: translateX(3px);
+    }
   }
 
   @include focus-ring($color-primary);

@@ -63,8 +63,8 @@
   }
 }
 
-// Tiered Modern Cards (Section 18 in brief)
-// Primary White Card + Prominent Soft Shadow
+// Tiered Modern Cards (Human-designed civic-tech aesthetic)
+// Primary White Card + Layered Soft Shadow
 @mixin card-primary {
   background-color: $color-surface;
   border: 1px solid rgba(188, 216, 203, 0.45);
@@ -73,9 +73,9 @@
   transition: transform $transition-smooth, box-shadow $transition-smooth, border-color $transition-smooth;
 
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
     box-shadow: $shadow-hover;
-    border-color: $color-primary;
+    border-color: rgba(23, 107, 85, 0.65);
   }
 }
 
@@ -88,7 +88,7 @@
   transition: transform $transition-smooth, box-shadow $transition-smooth, border-color $transition-smooth;
 
   &:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
     box-shadow: $shadow-card;
     border-color: $color-primary;
   }
@@ -98,22 +98,81 @@
 @mixin card-dark {
   background-color: $color-primary;
   color: #ffffff;
-  border-radius: $radius-card-lg;
+  border-radius: $radius-container;
   box-shadow: $shadow-raised;
   position: relative;
   overflow: hidden;
 }
 
-// Micro-interaction button press
+// Micro-interaction button press with lift on hover
 @mixin button-press {
-  transition: transform $transition-instant, background-color $transition-fast, box-shadow $transition-fast;
-  &:active {
-    transform: scale(0.97);
+  transition: transform $transition-fast, box-shadow $transition-fast, background-color $transition-fast, border-color $transition-fast;
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+  }
+  &:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
   }
 }
 
-// Delicate Kyrgyz geometric ornament watermark (SVG encoded, subtle 4% opacity)
-@mixin kyrgyz-watermark {
-  background-image: radial-gradient(#176B55 0.75px, transparent 0.75px);
-  background-size: 16px 16px;
+// Floating micro-interaction for cards
+@mixin floating($duration: 4.5s, $y: -7px) {
+  animation: floatMotion $duration ease-in-out infinite alternate;
 }
+
+// Delicate Kyrgyz geometric ornament watermark
+@mixin kyrgyz-watermark {
+  background-image: radial-gradient(rgba(23, 107, 85, 0.12) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+// Global Keyframes for real animations
+@keyframes floatMotion {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes floatMotionReverse {
+  0% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(2px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0.4;
+  }
+}
+
+@keyframes drawRouteLine {
+  0% {
+    stroke-dashoffset: 400;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

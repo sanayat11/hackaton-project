@@ -118,10 +118,71 @@ export function VolunteerCabinet() {
         </div>
 
         <div className={styles.statItem}>
-          <span className={styles.statValue}>{currentUser.rating || 4.9}</span>
+          <div className={styles.ratingValueRow}>
+            <span className={styles.statValue}>{currentUser.rating || 4.9}</span>
+            <span className={styles.statStar}>★</span>
+          </div>
           <span className={styles.statLabel}>Индекс надёжности волонтёра</span>
         </div>
       </div>
+
+      {/* Volunteer Achievements & Recognition */}
+      <section className={styles.achievementsSection} aria-labelledby="achievements-title">
+        <div className={styles.achievementsHeader}>
+          <div>
+            <h2 id="achievements-title" className={styles.achievementsTitle}>
+              Достижения и признание волонтёра
+            </h2>
+            <p className={styles.achievementsSub}>
+              Подтверждённый социальный рейтинг в системе сопровождения города Бишкек
+            </p>
+          </div>
+          <span className={styles.levelBadge}>Уровень: Надёжный попутчик II</span>
+        </div>
+
+        <div className={styles.badgesGrid}>
+          <div className={styles.badgeCardUnlocked}>
+            <div className={styles.badgeGlowRing} />
+            <div className={styles.badgeIcon}>🏆</div>
+            <div className={styles.badgeContent}>
+              <strong>Первые 5 поездок</strong>
+              <span>Успешный старт в рядах службы</span>
+              <span className={styles.unlockedTag}>Разблокировано ✓</span>
+            </div>
+          </div>
+
+          <div className={styles.badgeCardUnlocked}>
+            <div className={styles.badgeGlowRing} />
+            <div className={styles.badgeIcon}>🤝</div>
+            <div className={styles.badgeContent}>
+              <strong>Надёжный попутчик</strong>
+              <span>100% маршрутов завершены вовремя</span>
+              <span className={styles.unlockedTag}>Разблокировано ✓</span>
+            </div>
+          </div>
+
+          <div className={styles.badgeCardUnlocked}>
+            <div className={styles.badgeGlowRing} />
+            <div className={styles.badgeIcon}>💚</div>
+            <div className={styles.badgeContent}>
+              <strong>10 часов помощи</strong>
+              <span>Существенный социальный вклад</span>
+              <span className={styles.unlockedTag}>Разблокировано ✓</span>
+            </div>
+          </div>
+
+          <div className={styles.badgeCardLocked}>
+            <div className={styles.badgeIcon}>🚀</div>
+            <div className={styles.badgeContent}>
+              <strong>25 сопровождений</strong>
+              <span>14 / 25 завершено</span>
+              <div className={styles.progressBar}>
+                <div className={styles.progressFill} style={{ width: '56%' }} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Active tasks */}
       <section aria-labelledby="active-tasks-title">

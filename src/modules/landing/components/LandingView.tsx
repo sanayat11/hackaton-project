@@ -25,12 +25,52 @@ import {
   PhoneIcon,
   KyrgyzMotifIcon,
 } from '@/shared/components/Icons';
+import { useScrollReveal } from '@/shared/hooks/useScrollReveal';
 import styles from './LandingView.module.scss';
+
+const JOURNEY_STEPS = [
+  {
+    step: '01',
+    status: 'Нужна помощь',
+    title: 'Заявка за 1 минуту',
+    desc: 'Заявитель или родственник указывает начальную точку, пункт назначения и особенности (коляска, костыли, авто).',
+    icon: ClockIcon,
+  },
+  {
+    step: '02',
+    status: 'Волонтёр найден',
+    title: 'Отклик в районе',
+    desc: 'Волонтёры в нужном районе Бишкека получают уведомление, видят точный маршрут и подтверждают готовность.',
+    icon: UsersIcon,
+  },
+  {
+    step: '03',
+    status: 'Сопровождение',
+    title: 'Безопасная встреча',
+    desc: 'Волонтёр созванивается по телефону, встречает у подъезда и надёжно сопровождает на всём пути.',
+    icon: HeartHandshakeIcon,
+  },
+  {
+    step: '04',
+    status: 'Завершено ✓',
+    title: 'Фиксация и доверие',
+    desc: 'Координатор фиксирует закрытие маршрута. Социальные часы волонтёра зачисляются в верифицированный профиль.',
+    icon: ShieldCheckIcon,
+  },
+];
 
 export function LandingView() {
   const { success, error } = useNotification();
   const [requests, setRequests] = useState<IRequest[]>([]);
   const [applyTarget, setApplyTarget] = useState<IRequest | null>(null);
+  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
+
+  // Scroll reveal hooks for silky entrance animations
+  const journeyReveal = useScrollReveal<HTMLDivElement>();
+  const impactReveal = useScrollReveal<HTMLDivElement>();
+  const spheresReveal = useScrollReveal<HTMLDivElement>();
+  const directoryReveal = useScrollReveal<HTMLDivElement>();
+  const trustReveal = useScrollReveal<HTMLDivElement>();
 
   useEffect(() => {
     let active = true;
@@ -161,15 +201,31 @@ export function LandingView() {
                   className={styles.animatedRouteLine}
                 />
 
-                {/* Waypoint A (Start) */}
-                <circle cx="110" cy="280" r="10" fill="#176B55" opacity="0.2" className={styles.pulseRing} />
-                <circle cx="110" cy="280" r="6" fill="#176B55" />
-                <circle cx="110" cy="280" r="2.5" fill="#ffffff" />
+                {/* Traveling Volunteer Beacon moving smoothly along the route curve */}
+                <circle r="12" fill="#176B55" opacity="0.25">
+                  <animateMotion
+                    path="M 110 280 C 180 280, 220 220, 290 220 C 340 220, 360 140, 420 120"
+                    dur="5.5s"
+                    repeatCount="indefinite"
+                  />
+                </circle>
+                <circle r="5" fill="#176B55">
+                  <animateMotion
+                    path="M 110 280 C 180 280, 220 220, 290 220 C 340 220, 360 140, 420 120"
+                    dur="5.5s"
+                    repeatCount="indefinite"
+                  />
+                </circle>
 
-                {/* Waypoint B (Destination) */}
-                <circle cx="420" cy="120" r="12" fill="#F0B86E" opacity="0.3" className={styles.pulseRingFast} />
-                <circle cx="420" cy="120" r="7" fill="#F0B86E" />
-                <circle cx="420" cy="120" r="3" fill="#613C08" />
+                {/* Waypoint A (Start Point: 7 мкр) */}
+                <circle cx="110" cy="280" r="14" fill="#176B55" opacity="0.18" className={styles.pulseRing} />
+                <circle cx="110" cy="280" r="7" fill="#176B55" />
+                <circle cx="110" cy="280" r="3" fill="#ffffff" />
+
+                {/* Waypoint B (Destination Point: ЦОН №2) */}
+                <circle cx="420" cy="120" r="16" fill="#F0B86E" opacity="0.28" className={styles.pulseRingFast} />
+                <circle cx="420" cy="120" r="8" fill="#F0B86E" />
+                <circle cx="420" cy="120" r="3.5" fill="#613C08" />
               </svg>
 
               {/* Floating Card 1: Active Help Request (Top Left) */}
@@ -223,7 +279,11 @@ export function LandingView() {
       </section>
 
       {/* 2. THE HUMAN TRANSIT JOURNEY (Маршрут → Человек → Помощь → Связь) */}
-      <section className={styles.journeySection} aria-labelledby="journey-title">
+      <section
+        ref={journeyReveal.ref}
+        className={`${styles.journeySection} ${journeyReveal.isVisible ? styles.isRevealed : ''}`}
+        aria-labelledby="journey-title"
+      >
         <div className="container">
           <div className={styles.sectionHeaderCentered}>
             <div className={styles.sectionTag}>
@@ -238,60 +298,68 @@ export function LandingView() {
             </p>
           </div>
 
+          {/* Interactive Social Impact Route Bar */}
+          <div className={styles.routeTrackerBar} role="tablist" aria-label="Этапы оказания помощи">
+            <div className={styles.trackerLine}>
+              <div
+                className={styles.trackerProgress}
+                style={{ width: `${(activeJourneyStep / (JOURNEY_STEPS.length - 1)) * 100}%` }}
+              />
+            </div>
+            {JOURNEY_STEPS.map((s, idx) => {
+              const isActive = activeJourneyStep === idx;
+              const isPassed = activeJourneyStep >= idx;
+              return (
+                <button
+                  key={s.step}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`${styles.trackerStepBtn} ${isActive ? styles.stepActive : ''} ${isPassed ? styles.stepPassed : ''}`}
+                  onClick={() => setActiveJourneyStep(idx)}
+                >
+                  <span className={styles.trackerStepNode}>
+                    {isPassed && idx < activeJourneyStep ? '✓' : s.step}
+                  </span>
+                  <span className={styles.trackerStepLabel}>{s.status}</span>
+                </button>
+              );
+            })}
+          </div>
+
           <div className={styles.journeyGrid}>
-            <div className={styles.journeyCard}>
-              <div className={styles.journeyStepNumber}>01</div>
-              <div className={styles.journeyIconBox}>
-                <ClockIcon size={24} />
-              </div>
-              <h3 className={styles.journeyCardTitle}>Заявка за 1 минуту</h3>
-              <p className={styles.journeyCardText}>
-                Заявитель или его родственники указывают начальную точку, пункт назначения
-                и особенности (коляска, костыли, необходимость авто).
-              </p>
-            </div>
-
-            <div className={styles.journeyCard}>
-              <div className={styles.journeyStepNumber}>02</div>
-              <div className={styles.journeyIconBox}>
-                <UsersIcon size={24} />
-              </div>
-              <h3 className={styles.journeyCardTitle}>Отклик волонтёра</h3>
-              <p className={styles.journeyCardText}>
-                Волонтёры в нужном районе Бишкека получают уведомление, видят маршрут и время,
-                после чего подтверждают готовность помочь.
-              </p>
-            </div>
-
-            <div className={styles.journeyCard}>
-              <div className={styles.journeyStepNumber}>03</div>
-              <div className={styles.journeyIconBox}>
-                <HeartHandshakeIcon size={24} />
-              </div>
-              <h3 className={styles.journeyCardTitle}>Безопасная встреча</h3>
-              <p className={styles.journeyCardText}>
-                Волонтёр связывается по телефону, встречает у подъезда и аккуратно сопровождает
-                на протяжении всего маршрута.
-              </p>
-            </div>
-
-            <div className={styles.journeyCard}>
-              <div className={styles.journeyStepNumber}>04</div>
-              <div className={styles.journeyIconBox}>
-                <ShieldCheckIcon size={24} />
-              </div>
-              <h3 className={styles.journeyCardTitle}>Фиксация и доверие</h3>
-              <p className={styles.journeyCardText}>
-                Координатор отслеживает закрытие маршрута. Социальные часы волонтёра засчитываются
-                в личный профиль достижений.
-              </p>
-            </div>
+            {JOURNEY_STEPS.map((step, idx) => {
+              const Icon = step.icon;
+              const isCurrent = activeJourneyStep === idx;
+              return (
+                <div
+                  key={step.step}
+                  className={`${styles.journeyCard} ${isCurrent ? styles.activeJourneyCard : ''}`}
+                  onClick={() => setActiveJourneyStep(idx)}
+                  style={{ animationDelay: `${0.1 + idx * 0.12}s` }}
+                >
+                  <div className={styles.journeyCardHeader}>
+                    <span className={styles.journeyStepNumber}>{step.step}</span>
+                    <span className={styles.journeyStatusBadge}>{step.status}</span>
+                  </div>
+                  <div className={styles.journeyIconBox}>
+                    <Icon size={24} />
+                  </div>
+                  <h3 className={styles.journeyCardTitle}>{step.title}</h3>
+                  <p className={styles.journeyCardText}>{step.desc}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* 3. DARK GREEN IMPACT & SOCIAL HOURS SECTION (#176B55) */}
-      <section className={styles.impactSection} aria-labelledby="impact-title">
+      <section
+        ref={impactReveal.ref}
+        className={`${styles.impactSection} ${impactReveal.isVisible ? styles.isRevealed : ''}`}
+        aria-labelledby="impact-title"
+      >
         <div className={`container ${styles.impactContainer}`}>
           <div className={styles.impactHeader}>
             <div className={styles.impactBadge}>
@@ -384,7 +452,11 @@ export function LandingView() {
       </section>
 
       {/* 4. SPHERES OF SUPPORT (Направления помощи) */}
-      <section className={styles.spheresSection} aria-labelledby="spheres-title">
+      <section
+        ref={spheresReveal.ref}
+        className={`${styles.spheresSection} ${spheresReveal.isVisible ? styles.isRevealed : ''}`}
+        aria-labelledby="spheres-title"
+      >
         <div className="container">
           <div className={styles.sectionHeaderRow}>
             <div>
@@ -455,7 +527,11 @@ export function LandingView() {
       </section>
 
       {/* 5. REAL OPEN REQUESTS DIRECTORY */}
-      <section className={styles.directorySection} aria-labelledby="live-requests-title">
+      <section
+        ref={directoryReveal.ref}
+        className={`${styles.directorySection} ${directoryReveal.isVisible ? styles.isRevealed : ''}`}
+        aria-labelledby="live-requests-title"
+      >
         <div className="container">
           <div className={styles.feedHeaderRow}>
             <div>
@@ -490,7 +566,11 @@ export function LandingView() {
       </section>
 
       {/* 6. TRUST & SAFETY / COORDINATOR HEADQUARTERS STRIP */}
-      <section className={styles.trustSection} aria-labelledby="trust-title">
+      <section
+        ref={trustReveal.ref}
+        className={`${styles.trustSection} ${trustReveal.isVisible ? styles.isRevealed : ''}`}
+        aria-labelledby="trust-title"
+      >
         <div className="container">
           <div className={styles.civicNotice}>
             <div className={styles.noticeContent}>

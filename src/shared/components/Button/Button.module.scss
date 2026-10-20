@@ -10,8 +10,8 @@
   gap: 0.5rem;
   font-family: inherit;
   font-weight: 600;
-  border-radius: $radius-xs;
-  transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
+  border-radius: $radius-btn;
+  transition: transform $transition-fast, box-shadow $transition-fast, background-color $transition-fast, border-color $transition-fast, color $transition-fast;
   position: relative;
   text-decoration: none;
   cursor: pointer;
@@ -28,6 +28,8 @@
     cursor: not-allowed;
     opacity: 0.5;
     pointer-events: none;
+    transform: none !important;
+    box-shadow: none !important;
   }
 
   &.fullWidth {
@@ -37,37 +39,43 @@
   // Sizes
   &.sm {
     min-height: 38px;
-    padding: 0.35rem 0.85rem;
+    padding: 0.35rem 0.95rem;
     font-size: 0.8125rem;
+    border-radius: $radius-btn;
   }
 
   &.md {
     min-height: 44px;
-    padding: 0.6rem 1.25rem;
+    padding: 0.6rem 1.35rem;
     font-size: 0.9375rem;
   }
 
   &.lg {
     min-height: 48px;
-    padding: 0.75rem 1.6rem;
+    padding: 0.75rem 1.75rem;
     font-size: 1rem;
     letter-spacing: -0.01em;
   }
 
-  // Primary: solid spruce green, crisp border, zero gradient
+  // Primary: solid spruce green, crisp border, elegant hover lift & shadow
   &.primary {
     background-color: $color-primary;
     color: #ffffff;
     border-color: $color-primary;
+    box-shadow: 0 4px 12px rgba(23, 107, 85, 0.2);
 
     &:hover:not(:disabled) {
       background-color: $color-primary-light;
       border-color: $color-primary-light;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -3px rgba(23, 107, 85, 0.32);
     }
 
     &:active:not(:disabled) {
       background-color: $color-primary-dark;
       border-color: $color-primary-dark;
+      transform: translateY(0) scale(0.98);
+      box-shadow: 0 2px 6px rgba(23, 107, 85, 0.2);
     }
 
     @include focus-ring($color-primary);
@@ -80,12 +88,15 @@
     border-color: $color-block-border;
 
     &:hover:not(:disabled) {
-      background-color: color.adjust($color-block-bg, $lightness: -4%);
-      border-color: color.adjust($color-block-border, $lightness: -6%);
+      background-color: #CCEAE0;
+      border-color: #A9D5C3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(23, 107, 85, 0.08);
     }
 
     &:active:not(:disabled) {
-      background-color: color.adjust($color-block-bg, $lightness: -8%);
+      background-color: #BCD8CB;
+      transform: translateY(0) scale(0.98);
     }
 
     @include focus-ring($color-primary);
@@ -96,14 +107,19 @@
     background-color: $color-accent;
     color: $color-accent-text;
     border-color: #DF9F4D;
+    box-shadow: 0 4px 12px rgba(240, 184, 110, 0.25);
 
     &:hover:not(:disabled) {
       background-color: $color-accent-hover;
       border-color: $color-accent-hover;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -3px rgba(240, 184, 110, 0.4);
     }
 
     &:active:not(:disabled) {
       background-color: #C68630;
+      transform: translateY(0) scale(0.98);
+      box-shadow: 0 2px 6px rgba(240, 184, 110, 0.2);
     }
 
     @include focus-ring($color-accent);
@@ -119,10 +135,13 @@
       background-color: $color-block-bg-subtle;
       border-color: $color-primary;
       color: $color-primary;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(23, 107, 85, 0.06);
     }
 
     &:active:not(:disabled) {
       background-color: $color-block-bg;
+      transform: translateY(0) scale(0.98);
     }
 
     @include focus-ring($color-primary);
