@@ -107,7 +107,7 @@ export function RequestFeed() {
     <div>
       <header className={styles.header}>
         <div>
-          <div className={styles.serviceRef}>ЖОЛДОШ • РЕЕСТР СОПРОВОЖДЕНИЯ</div>
+          <div className={styles.serviceRef}>JOCARE • РЕЕСТР СОПРОВОЖДЕНИЯ</div>
           <h1 className={styles.title}>Реестр заявок на сопровождение</h1>
           <p className={styles.subtitle}>
             Открытый городской каталог обращений горожан, нуждающихся в сопровождении или адресной помощи в Бишкеке.

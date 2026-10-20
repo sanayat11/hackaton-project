@@ -124,7 +124,7 @@ export function CreateRequestForm() {
   return (
     <div className={styles.formCard}>
       <header className={styles.formHeader}>
-        <div className={styles.serviceRef}>ЖОЛДОШ • ФОРМУЛЯР ЗАЯВИТЕЛЯ</div>
+        <div className={styles.serviceRef}>JOCARE • ФОРМУЛЯР ЗАЯВИТЕЛЯ</div>
         <h1 className={styles.title}>Регистрация заявки на сопровождение</h1>
         <p className={styles.subtitle}>
           Опишите, какая помощь необходима вам или вашему близкому человеку в Бишкеке.

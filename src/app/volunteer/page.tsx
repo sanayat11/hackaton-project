@@ -2,7 +2,7 @@
 import { VolunteerCabinet } from '@/modules/volunteer/components/VolunteerCabinet/VolunteerCabinet';
 
 export const metadata = {
-  title: 'Кабинет волонтёра • Жолдош',
+  title: 'Кабинет волонтёра • JoCare',
   description: 'Управление назначенными задачами и статистика добрых дел волонтёра.',
 };
 

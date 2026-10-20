@@ -65,7 +65,7 @@ export function VolunteerCabinet() {
   return (
     <div>
       <header className={styles.header}>
-        <div className={styles.serviceRef}>ЖОЛДОШ • РАБОЧИЙ КАБИНЕТ ВОЛОНТЁРА</div>
+        <div className={styles.serviceRef}>JOCARE • РАБОЧИЙ КАБИНЕТ ВОЛОНТЁРА</div>
         <h1 className={styles.title}>Журнал сопровождения волонтёра</h1>
         <p className={styles.subtitle}>
           Волонтёр: <strong>{currentUser.name}</strong> • Район: Октябрьский / Первомайский • Тел: {currentUser.phone}

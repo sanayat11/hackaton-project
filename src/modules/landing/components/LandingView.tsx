@@ -126,7 +126,7 @@ export function LandingView() {
             </h1>
 
             <p className={styles.heroLead}>
-              Жолдош связывает маломобильных горожан, пожилых людей и людей с инвалидностью
+              JoCare связывает маломобильных горожан, пожилых людей и людей с инвалидностью
               с проверенными волонтёрами Бишкека для безопасного сопровождения в медучреждения,
               ЦОНы и по важным делам.
             </p>
@@ -135,7 +135,6 @@ export function LandingView() {
               <Link href="/requests/new">
                 <Button variant="primary" size="lg">
                   <span>Попросить о помощи</span>
-                  <ArrowRightIcon size={18} />
                 </Button>
               </Link>
 
@@ -291,7 +290,7 @@ export function LandingView() {
               <span>ПРИНЦИП РАБОТЫ ПЛАТФОРМЫ</span>
             </div>
             <h2 id="journey-title" className={styles.sectionHeadingLarge}>
-              Как Жолдош соединяет людей
+              Как JoCare соединяет людей
             </h2>
             <p className={styles.sectionSubtext}>
               Простой и защищённый процесс организации сопровождения от заявки до возвращения домой.
@@ -578,7 +577,7 @@ export function LandingView() {
                 <ShieldCheckIcon size={18} />
                 <span>БЕЗОПАСНОСТЬ И ВЕРИФИКАЦИЯ</span>
               </div>
-              <h3 id="trust-title">Координационный штаб платформы «Жолдош»</h3>
+              <h3 id="trust-title">Координационный штаб платформы «JoCare»</h3>
               <p>
                 Каждая заявка модерируется. Если вы представитель социальной службы, опеки
                 или вам требуется экстренная консультация по сопровождению подопечного,

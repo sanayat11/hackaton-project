@@ -2,8 +2,8 @@
 import { CoordinatorDashboard } from '@/modules/coordinator/components/CoordinatorDashboard/CoordinatorDashboard';
 
 export const metadata = {
-  title: 'Панель координатора • Жолдош',
-  description: 'Координационный штаб платформы взаимопомощи Жолдош.',
+  title: 'Панель координатора • JoCare',
+  description: 'Координационный штаб платформы взаимопомощи JoCare.',
 };
 
 export default function CoordinatorPage() {

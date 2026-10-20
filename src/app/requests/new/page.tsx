@@ -2,7 +2,7 @@
 import { CreateRequestForm } from '@/modules/requests/components/CreateRequestForm/CreateRequestForm';
 
 export const metadata = {
-  title: 'Подать новую заявку • Жолдош',
+  title: 'Подать новую заявку • JoCare',
   description: 'Создание заявки на волонтёрскую помощь в Бишкеке и пригороде.',
 };
 

@@ -8,10 +8,10 @@ import { Footer } from '@/shared/components/Footer/Footer';
 import { ToastContainer } from '@/modules/notifications/components/ToastContainer';
 
 export const metadata: Metadata = {
-  title: 'Жолдош — Платформа взаимопомощи и волонтёрства',
+  title: 'JoCare — Платформа взаимопомощи и волонтёрства',
   description:
     'Цифровая система координации волонтёрской помощи в Кыргызстане: доставка медикаментов и продуктов, автопомощь, уход за пожилыми и экстренная поддержка.',
-  keywords: ['волонтёрство', 'Бишкек', 'Кыргызстан', 'взаимопомощь', 'Жолдош', 'социальная помощь'],
+  keywords: ['волонтёрство', 'Бишкек', 'Кыргызстан', 'взаимопомощь', 'JoCare', 'социальная помощь'],
 };
 
 export default function RootLayout({

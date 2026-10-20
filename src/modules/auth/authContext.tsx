@@ -26,7 +26,7 @@ export const DEMO_USERS: Record<UserRole, IUser> = {
     name: 'Чынгыз Маматов',
     role: 'COORDINATOR',
     phone: '+996 (772) 33-44-55',
-    email: 'chyngyz.coord@joldosh.kg',
+    email: 'chyngyz.coord@jocare.kg',
   },
 };
 

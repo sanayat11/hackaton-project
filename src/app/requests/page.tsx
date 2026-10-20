@@ -2,7 +2,7 @@
 import { RequestFeed } from '@/modules/requests/components/RequestFeed/RequestFeed';
 
 export const metadata = {
-  title: 'Лента заявок • Жолдош',
+  title: 'Лента заявок • JoCare',
   description: 'Список всех активных заявок на помощь от жителей Кыргызстана.',
 };
 

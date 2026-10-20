@@ -107,7 +107,7 @@ export function CoordinatorDashboard() {
   return (
     <div>
       <header className={styles.header}>
-        <div className={styles.serviceRef}>ЖОЛДОШ • ОПЕРАТИВНАЯ ПАНЕЛЬ КООРДИНАТОРА</div>
+        <div className={styles.serviceRef}>JOCARE • ОПЕРАТИВНАЯ ПАНЕЛЬ КООРДИНАТОРА</div>
         <h1 className={styles.title}>Диспетчерский пульт сопровождения</h1>
         <p className={styles.subtitle}>
           Дежурный координатор: <strong>{currentUser.name}</strong> • Сводка по районам Бишкека

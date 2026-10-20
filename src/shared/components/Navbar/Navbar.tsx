@@ -33,7 +33,7 @@ export function Navbar() {
         Перейти к основному содержимому
       </a>
       <div className={`container ${styles.navContainer}`}>
-        <Link href="/" className={styles.brand} aria-label="Жолдош — платформа сопровождения">
+        <Link href="/" className={styles.brand} aria-label="JoCare — платформа сопровождения">
           <div className={styles.brandMarkWrapper}>
             <div className={styles.motifBadge}>
               <KyrgyzMotifIcon size={20} className={styles.motifIcon} />
@@ -43,7 +43,7 @@ export function Navbar() {
             </div>
           </div>
           <div className={styles.brandText}>
-            <span className={styles.brandTitle}>ЖОЛДОШ</span>
+            <span className={styles.brandTitle}>JoCare</span>
             <span className={styles.brandSubtitle}>Служба городского сопровождения</span>
           </div>
         </Link>

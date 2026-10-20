@@ -24,7 +24,7 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={`container ${styles.grid}`}>
         <div className={styles.brandCol}>
-          <span className={styles.serviceRef}>ЖОЛДОШ • КЫРГЫЗСТАН</span>
+          <span className={styles.serviceRef}>JOCARE • КЫРГЫЗСТАН</span>
           <span className={styles.brandTitle}>Служба взаимной поддержки и сопровождения</span>
           <p className={styles.brandDesc}>
             Платформа объединяет горожан, готовых сопровождать маломобильных граждан в
@@ -62,14 +62,14 @@ export function Footer() {
           <h3 className={styles.colTitle}>Связь с координатором</h3>
           <ul className={styles.linkList}>
             <li className={styles.link}>Телефон: +996 (312) 900-112</li>
-            <li className={styles.link}>Диспетчер: @joldosh_dispatch_kg</li>
+            <li className={styles.link}>Диспетчер: @jocare_dispatch_kg</li>
             <li className={styles.link}>Бишкек, Первомайский район</li>
           </ul>
         </div>
       </div>
 
       <div className={`container ${styles.bottomBar}`}>
-        <span>© 2026 Жолдош. Гражданская инициатива взаимной помощи.</span>
+        <span>© 2026 JoCare. Гражданская инициатива взаимной помощи.</span>
         <button
           type="button"
           onClick={handleResetData}
